@@ -1,0 +1,25 @@
+
+    <div class="mainCard">
+        <input type="text" placeholder="სახელი" [(ngModel)]="student.name" required>
+        <input type="text" placeholder="განათლება" [(ngModel)]="student.grade" required>
+        <input type="text" placeholder="საგნები" [(ngModel)]="student.subjects" required>
+        <input type="text" placeholder="ქუჩა" [(ngModel)]="student.address.street" required>
+        <input type="text" placeholder="ქალაქი" [(ngModel)]="student.address.city" required>
+        <input type="text" placeholder="ფოსტის კოდი" [(ngModel)]="student.address.zip" required>
+        <button (click)="save()"> შენახვა </button>
+        <button (click)="showList()"> სია </button>
+    </div>
+   
+   
+   
+   
+    <div *ngIf="visible" class="studentInfo">
+        <div *ngFor="let el of studentsArray" class="divForCycle">
+            <h3> სახელი : {{el.name}}</h3>
+            <h3> განათლება : {{el.grade}}</h3>
+            <h3> საგნები : {{el.subjects}}</h3>
+            <h3> ქუჩა : {{el.address.street}}</h3>
+            <h3> ქალაქი : {{el.address.city}}</h3>
+            <h3> ფოსტის კოდი : {{el.address.zip}}</h3>
+        </div>
+    </div>
