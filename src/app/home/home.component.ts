@@ -10,24 +10,27 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
+  text = "სია"
+  // text1 = "დახურეთ სია"
   visible = false
   studentsArray : any[] = []
 
   save(){
+    this.studentsArray.push({...this.student})
+    console.log(this.studentsArray);
+    console.log(this.student)
+
     this.student.name = ""
     this.student.grade = ""
     this.student.subjects = ""
     this.student.address.street = ""
     this.student.address.city = ""
     this.student.address.zip = ""
-
-    this.studentsArray.push({...this.student})
-    console.log(this.studentsArray);
-    console.log(this.student)
   }
 
   showList(){
     this.visible = !this.visible
+    this.text = this.text == "სია" ? "დახურეთ სია" : "სია";
   }
 
 
