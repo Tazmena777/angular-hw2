@@ -1,0 +1,14 @@
+<div class="studentInfo">
+    <h3> სახელი : {{student.name}}</h3>
+    <h3> განათლება : {{student.grade}}</h3>
+    <h3> ასაკი : {{student.age}}</h3>
+    <h3> საგნები : {{student.subjects}}</h3>
+    <h3> ქუჩა : {{student.address.street}}</h3>
+    <h3> ქალაქი : {{student.address.city}}</h3>
+    <h3> ფოსტის კოდი : {{student.address.zip}}</h3>
+
+    <div class="buttons">
+        <button (click)="deleteStudent(index)">წაშლა</button>
+        <button (click)="editStudent(index)" >შეცვლა</button>
+    </div>
+</div>

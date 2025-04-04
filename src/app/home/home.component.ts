@@ -1,31 +1,43 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
+import { IStudent } from '../Models/student';
+import { DisplayDataComponent } from "./display-data/display-data.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, DisplayDataComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
   text = "სია"
-  // text1 = "დახურეთ სია"
   visible = false
-  studentsArray : any[] = []
+  studentsArray : IStudent[] = []
 
-  save(){
-    this.studentsArray.push({...this.student})
-    console.log(this.studentsArray);
-    console.log(this.student)
+  student : IStudent = {
+    name: "",
+    age: null,
+    grade: "",
+    subjects: "",
+    address: {
+        street: "",
+        city: "",
+        zip: null
+    }
+};
 
-    this.student.name = ""
-    this.student.grade = ""
-    this.student.subjects = ""
-    this.student.address.street = ""
-    this.student.address.city = ""
-    this.student.address.zip = ""
+
+  save(form : NgForm){
+
+    if(form.valid){
+      this.studentsArray.push({...this.student,
+        address: { ...this.student.address}})
+    }
+    console.log(this.student);
+    
+    form.resetForm()
   }
 
   showList(){
@@ -33,19 +45,13 @@ export class HomeComponent {
     this.text = this.text == "სია" ? "დახურეთ სია" : "სია";
   }
 
+  deleteStudent(ind : number){
+    this.studentsArray.splice(ind,1)
+}
 
-  student = {
-    name: "",
-    age: null,
-    grade: "",
-    subjects: "",
-    isEnrolled: false,
-    address: {
-        street: "",
-        city: "",
-        zip: ""
-    }
-};
-
+editStudent(ind: number){
+    this.student = this.studentsArray[ind]
+    this.studentsArray.splice(ind,1)
+}
 
 }

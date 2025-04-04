@@ -1,0 +1,12 @@
+
+
+<div *ngIf="isVisible">
+
+    <app-card 
+    *ngFor="let el of studentData let i = index"
+    [student]="el"
+    [index]="i"
+    (delSt)="delete($event)"
+    (editSt)="edit($event)"
+    ></app-card>
+</div>
